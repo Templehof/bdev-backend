@@ -4,6 +4,7 @@ const dotenv = require("dotenv");
 const bodyParser = require("body-parser");
 
 const toolRoutes = require("./routes/bToolsRoutes");
+const userRouter = require("./routes/userRoutes");
 
 const app = express();
 dotenv.config({ path: "./config.env" });
@@ -30,7 +31,8 @@ app.use((req, res, next) => {
   next();
 });
 
-app.use("/api/", toolRoutes);
+app.use("/api/tools", toolRoutes);
+app.use("/api/users", userRouter);
 
 const port = process.env.PORT || 5000;
 app.listen(port, () => {
